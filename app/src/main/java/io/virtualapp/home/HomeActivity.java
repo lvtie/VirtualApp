@@ -33,7 +33,6 @@ import io.virtualapp.home.models.AppData;
 import io.virtualapp.home.models.AppInfoLite;
 import io.virtualapp.home.models.EmptyAppData;
 import io.virtualapp.home.models.PackageAppData;
-import io.virtualapp.my.MainActivity;
 import io.virtualapp.widgets.CircularAnim;
 import io.virtualapp.widgets.TwoGearsView;
 
@@ -55,7 +54,7 @@ public class HomeActivity extends VActivity implements HomeContract.HomeView {
     private HomeContract.HomePresenter mPresenter;
     private TwoGearsView mLoadingView;
     private RecyclerView mLauncherView;
-    private FloatingActionButton mFloatingButton,home_fab_my;//新增处理
+    private FloatingActionButton mFloatingButton;
     private View bottomArea;
     private View createShortcutArea;
     private View deleteAppArea;
@@ -86,8 +85,6 @@ public class HomeActivity extends VActivity implements HomeContract.HomeView {
         mLoadingView = (TwoGearsView) findViewById(R.id.pb_loading_app);
         mLauncherView = (RecyclerView) findViewById(R.id.home_launcher);
         mFloatingButton = (FloatingActionButton) findViewById(R.id.home_fab);
-        home_fab_my  = (FloatingActionButton) findViewById(R.id.home_fab_my);
-
         bottomArea = findViewById(R.id.bottom_area);
         createShortcutArea = findViewById(R.id.create_shortcut_area);
         deleteAppArea = findViewById(R.id.delete_app_area);
@@ -120,14 +117,6 @@ public class HomeActivity extends VActivity implements HomeContract.HomeView {
                     .colorOrImageRes(R.color.colorPrimaryRavel)
                     .go(() -> ListAppActivity.gotoListApp(this));
         });
-       //新增事件监听
-        home_fab_my.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-//            this.startActivityForResult(intent, VCommends.REQUEST_SELECT_APP);
-        });
-
-
     }
 
     private void deleteApp(int position) {
@@ -145,7 +134,7 @@ public class HomeActivity extends VActivity implements HomeContract.HomeView {
     private void createShortcut(int position) {
         AppData model = mLaunchpadAdapter.getList().get(position);
         if (model instanceof PackageAppData) {
-            mPresenter.createShortcut((PackageAppData) model);
+            mPresenter.createShortcut(model);
         }
     }
 

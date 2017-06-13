@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".splash.SplashActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,7 @@
         </activity>
 
         <activity
-            android:name=".splash.SplashActivity"
-            android:theme="@style/UITheme" />
-
-        <activity
-            android:name=".my.MainActivity"
+            android:name=".home.HomeActivity"
             android:theme="@style/UITheme" />
 
         <activity
@@ -36,6 +32,11 @@
             android:noHistory="true"
             android:taskAffinity="va.task.loading"
             android:theme="@style/TransparentTheme" />
+
+        <activity
+            android:name=".my.MainActivity"
+            android:theme="@style/UITheme" />
+
 
     </application>
 

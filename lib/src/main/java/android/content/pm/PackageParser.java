@@ -20,7 +20,6 @@ public class PackageParser {
         public int icon;
         public int logo;
         public int banner;
-        public int preferred;
     }
 
     public static class Component<II extends IntentInfo> {
@@ -47,7 +46,6 @@ public class PackageParser {
         public final ArrayList<Permission> permissions = new ArrayList<Permission>(0);
         public final ArrayList<PermissionGroup> permissionGroups = new ArrayList<PermissionGroup>(0);
         public final ArrayList<String> requestedPermissions = new ArrayList<String>();
-        public ArrayList<String> protectedBroadcasts;
         public Signature[] mSignatures;
         public Bundle mAppMetaData;
         public Object mExtras;

@@ -3,6 +3,7 @@ package io.virtualapp;
 import android.app.Application;
 import android.content.Context;
 
+import com.flurry.android.FlurryAgent;
 import com.lody.virtual.client.core.VirtualCore;
 import com.lody.virtual.client.stub.StubManifest;
 
@@ -28,8 +29,7 @@ public class VApp extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         StubManifest.ENABLE_IO_REDIRECT = true;
-        StubManifest.ENABLE_INNER_SHORTCUT = true;
-
+        StubManifest.ENABLE_INNER_SHORTCUT = false;
         try {
             VirtualCore.get().startup(base);
         } catch (Throwable e) {
@@ -47,6 +47,12 @@ public class VApp extends Application {
             @Override
             public void onMainProcess() {
                 Once.initialise(VApp.this);
+                new FlurryAgent.Builder()
+                        .withLogEnabled(true)
+                        .withListener(() -> {
+                            // nothing
+                        })
+                        .build(VApp.this, "48RJJP7ZCZZBB6KMMWW5");
             }
 
             @Override

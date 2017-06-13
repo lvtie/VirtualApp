@@ -101,9 +101,7 @@ public class ListAppFragment extends VFragment<ListAppContract.ListAppPresenter>
             mInstallButton.setEnabled(count > 0);
             mInstallButton.setText(String.format(Locale.ENGLISH, "Install to SandBox (%d)", count));
         });
-        //insert
         mInstallButton.setOnClickListener(v -> {
-
             Integer[] selectedIndices = mAdapter.getSelectedIndices();
             ArrayList<AppInfoLite> dataList = new ArrayList<AppInfoLite>(selectedIndices.length);
             for (int index : selectedIndices) {
@@ -114,8 +112,6 @@ public class ListAppFragment extends VFragment<ListAppContract.ListAppPresenter>
             data.putParcelableArrayListExtra(VCommends.EXTRA_APP_INFO_LIST, dataList);
             getActivity().setResult(Activity.RESULT_OK, data);
             getActivity().finish();
-
-
         });
         new ListAppPresenterImpl(getActivity(), this, getSelectFrom()).start();
     }
